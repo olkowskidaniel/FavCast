@@ -1,7 +1,9 @@
-package com.olkowskidaniel.favcast;
+package com.olkowskidaniel.favcast.view.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.olkowskidaniel.favcast.R;
 
 public class MainActivity extends AppCompatActivity {
 
