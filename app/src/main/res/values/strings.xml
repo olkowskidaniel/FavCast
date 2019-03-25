@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FavCast</string>
+    <string name="nav_radio_title">Radio</string>
+    <string name="nav_podcast_title">Podcasts</string>
 </resources>
