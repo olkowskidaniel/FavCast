@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">FavCast</string>
-    <string name="nav_radio_title">Radio</string>
-    <string name="nav_podcast_title">Podcasts</string>
+    <string name="bottomNav_discover_title">Discover</string>
+    <string name="bottomNav_community_title">Community</string>
+    <string name="bottomNav_library_title">Library</string>
+    <string name="bottomNav_personal_title">Personal</string>
 </resources>
