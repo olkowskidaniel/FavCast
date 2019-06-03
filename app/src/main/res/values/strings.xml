@@ -4,4 +4,7 @@
     <string name="bottomNav_community_title">Community</string>
     <string name="bottomNav_library_title">Library</string>
     <string name="bottomNav_personal_title">Personal</string>
+    <string name="categories_discoverTopMenu_title">Categories</string>
+    <string name="audiobooks_discoverTopMenu_title">Audiobooks</string>
+    <string name="radio_discoverTopMenu_title">Radio</string>
 </resources>

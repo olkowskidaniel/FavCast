@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.base.discover.DiscoverFragment">
-
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/topMenu_discover_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/discover_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/discover_top_menu"
+            app:itemTextColor="@android:color/white"
+            android:background="@color/colorPrimaryDark"/>
+    </androidx.cardview.widget.CardView>
+    <FrameLayout
+        android:id="@+id/discover_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="DISCOVER FRAGMENT" />
-</FrameLayout>
+        android:layout_below="@id/topMenu_discover_cardView">
+    </FrameLayout>
+</RelativeLayout>
