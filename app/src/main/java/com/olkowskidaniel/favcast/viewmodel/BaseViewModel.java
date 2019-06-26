@@ -1,49 +1,46 @@
 package com.olkowskidaniel.favcast.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.olkowskidaniel.favcast.R;
 import com.olkowskidaniel.favcast.util.Constants;
-import com.olkowskidaniel.favcast.view.base.community.CommunityFragment;
-import com.olkowskidaniel.favcast.view.base.discover.DiscoverFragment;
-import com.olkowskidaniel.favcast.view.base.library.LibraryFragment;
-import com.olkowskidaniel.favcast.view.base.personal.PersonalFragment;
-import com.olkowskidaniel.favcast.view.main.MainActivity;
 
 public class BaseViewModel extends AndroidViewModel {
 
-    private boolean doubleBackToExitPressedOnce;
+    private boolean doubleBackToExitPressedOnce = false;
 
     public BaseViewModel(Application application) {
         super(application);
     }
 
     private MutableLiveData<Integer> navEvent;
-
     public MutableLiveData<Integer> getNavEvent() {
         if (navEvent == null) {
-            navEvent = new MutableLiveData<Integer>();
+            navEvent = new MutableLiveData<>();
         }
         return navEvent;
     }
 
-    public void backButtonPressed(Context context) {
+    private MutableLiveData<Boolean>  appExitTrigger;
+    public MutableLiveData<Boolean> getAppExitTrigger () {
+        if (appExitTrigger == null) {
+            appExitTrigger = new MutableLiveData<>();
+        }
+        return appExitTrigger;
+    }
+
+    public void backButtonPressed() {
         if (doubleBackToExitPressedOnce) {
-            Intent intent = new Intent(getApplication(), MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra("EXIT", true);
-            context.startActivity(intent);
+            getAppExitTrigger().setValue(true);
         }
 
         this.doubleBackToExitPressedOnce = true;
+        //TODO: get rid of this toast. put it inside baseactivity somehow
         Toast.makeText(getApplication(), "Click BACK again to exit", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {

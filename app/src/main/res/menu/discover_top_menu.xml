@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/categories_discoverTopMenu"
+        android:id="@+id/discoverTopMenu_categories"
         android:icon="@drawable/ic_categories"
         android:title="@string/categories_discoverTopMenu_title" />
     <item
-        android:id="@+id/audiobooks_discoverTopMenu"
+        android:id="@+id/discoverTopMenu_audiobooks"
         android:icon="@drawable/ic_audiobooks"
         android:title="@string/audiobooks_discoverTopMenu_title" />
     <item
-        android:id="@+id/radio_discoverTopMenu"
+        android:id="@+id/discoverTopmenu_radio"
         android:icon="@drawable/ic_radio"
         android:title="@string/radio_discoverTopMenu_title" />
 </menu>

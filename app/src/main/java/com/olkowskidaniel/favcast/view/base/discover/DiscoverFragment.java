@@ -1,5 +1,6 @@
 package com.olkowskidaniel.favcast.view.base.discover;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.olkowskidaniel.favcast.R;
+import com.olkowskidaniel.favcast.util.Constants;
 import com.olkowskidaniel.favcast.view.base.discover.audiobooks.AudiobooksFragment;
 import com.olkowskidaniel.favcast.view.base.discover.categories.CategoriesFragment;
 import com.olkowskidaniel.favcast.view.base.discover.radio.RadioFragment;
@@ -45,24 +47,32 @@ public class DiscoverFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         discoverViewModel = ViewModelProviders.of(this).get(DiscoverViewModel.class);
-        // TODO: Use the ViewModel
+        getFragmentManager().beginTransaction().replace(R.id.discover_fragment_container, new CategoriesFragment()).commit();
+        discoverViewModel.getNavEventDiscoverTab().observe(this, discoverNavObserver);
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.categories_discoverTopMenu:
-                    getFragmentManager().beginTransaction().replace(R.id.discover_fragment_container, new CategoriesFragment()).commit();
-                    break;
-                case R.id.audiobooks_discoverTopMenu:
-                    getFragmentManager().beginTransaction().replace(R.id.discover_fragment_container, new AudiobooksFragment()).commit();
-                    break;
-                case R.id.radio_discoverTopMenu:
-                    getFragmentManager().beginTransaction().replace(R.id.discover_fragment_container, new RadioFragment()).commit();
-            }
+            discoverViewModel.navButtonPressed(item.getItemId());
             return true;
         }
     };
 
+    final Observer<Integer> discoverNavObserver = new Observer<Integer>() {
+        @Override
+        public void onChanged(Integer integer) {
+            switch (integer) {
+                case Constants.OPENED_DISCOVER_CATEGORIES:
+                    getFragmentManager().beginTransaction().replace(R.id.discover_fragment_container, new CategoriesFragment()).commit();
+                    break;
+                case Constants.OPENED_DISCOVER_AUDIOBOOKS:
+                    getFragmentManager().beginTransaction().replace(R.id.discover_fragment_container, new AudiobooksFragment()).commit();
+                    break;
+                case Constants.OPENED_DISCOVER_RADIO:
+                    getFragmentManager().beginTransaction().replace(R.id.discover_fragment_container, new RadioFragment()).commit();
+                    break;
+            }
+        }
+    };
 }

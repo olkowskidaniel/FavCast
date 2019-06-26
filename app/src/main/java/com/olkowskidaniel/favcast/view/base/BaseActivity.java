@@ -20,6 +20,7 @@ import com.olkowskidaniel.favcast.view.base.community.CommunityFragment;
 import com.olkowskidaniel.favcast.view.base.discover.DiscoverFragment;
 import com.olkowskidaniel.favcast.view.base.library.LibraryFragment;
 import com.olkowskidaniel.favcast.view.base.personal.PersonalFragment;
+import com.olkowskidaniel.favcast.view.main.MainActivity;
 import com.olkowskidaniel.favcast.viewmodel.BaseViewModel;
 
 public class BaseActivity extends AppCompatActivity {
@@ -29,7 +30,6 @@ public class BaseActivity extends AppCompatActivity {
 
     BaseViewModel baseViewModel;
 
-    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class BaseActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.base_fragment_container, new DiscoverFragment()).commit();
 
         baseViewModel.getNavEvent().observe(this, navEventObserver);
+        baseViewModel.getAppExitTrigger().observe(this, appExitTriggerObserver);
     }
 
     @Override
@@ -58,7 +59,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        baseViewModel.backButtonPressed(this);
+        baseViewModel.backButtonPressed();
     }
 
     final Observer<Integer> navEventObserver = new Observer<Integer>() {
@@ -80,4 +81,17 @@ public class BaseActivity extends AppCompatActivity {
             }
         }
     };
+
+    final Observer<Boolean> appExitTriggerObserver = new Observer<Boolean>() {
+        @Override
+        public void onChanged(Boolean aBoolean) {
+            if (aBoolean) {
+                Intent intent = new Intent(getApplication(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("EXIT", true);
+                startActivity(intent);
+            }
+        }
+    };
+
 }
