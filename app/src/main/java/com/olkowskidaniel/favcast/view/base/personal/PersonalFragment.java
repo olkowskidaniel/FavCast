@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.olkowskidaniel.favcast.R;
+import com.olkowskidaniel.favcast.viewmodel.PersonalViewModel;
 
 public class PersonalFragment extends Fragment {
 

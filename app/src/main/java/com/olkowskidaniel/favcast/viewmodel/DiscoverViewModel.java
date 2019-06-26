@@ -1,4 +1,4 @@
-package com.olkowskidaniel.favcast.view.base.discover;
+package com.olkowskidaniel.favcast.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 

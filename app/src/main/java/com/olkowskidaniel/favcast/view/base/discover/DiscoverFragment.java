@@ -20,6 +20,7 @@ import com.olkowskidaniel.favcast.R;
 import com.olkowskidaniel.favcast.view.base.discover.audiobooks.AudiobooksFragment;
 import com.olkowskidaniel.favcast.view.base.discover.categories.CategoriesFragment;
 import com.olkowskidaniel.favcast.view.base.discover.radio.RadioFragment;
+import com.olkowskidaniel.favcast.viewmodel.DiscoverViewModel;
 
 public class DiscoverFragment extends Fragment {
 
@@ -43,7 +44,6 @@ public class DiscoverFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(R.id.discover_fragment_container, new CategoriesFragment()).commit();
         discoverViewModel = ViewModelProviders.of(this).get(DiscoverViewModel.class);
         // TODO: Use the ViewModel
     }

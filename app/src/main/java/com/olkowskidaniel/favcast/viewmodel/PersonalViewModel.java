@@ -1,4 +1,4 @@
-package com.olkowskidaniel.favcast.view.base.personal;
+package com.olkowskidaniel.favcast.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
